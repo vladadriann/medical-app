@@ -10,7 +10,7 @@
 
 >> **dotenv** – loads environment variables from a .env file into process.env
 > 
->> **@typegoose/typegoose** – writing Mongoose models with TypeScript class
+>> **@typegoose** – writing Mongoose models with TypeScript class
 > 
 >> **bcryptjs** – to hash the password data
 > 
@@ -24,3 +24,4 @@
 >
 >> **ts-node-dev** – allow us run the server. An alternative solution is **nodemon** and **ts-node**
 
+model,schema,service,controller,routes,app

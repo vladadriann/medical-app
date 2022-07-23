@@ -8,6 +8,8 @@ import connectDB from "./utils/connect-db";
 import userRouter from "./routes/user.route";
 import authRouter from "./routes/auth.route";
 import appointmentRouter from "./routes/appointment.route";
+import feedbackRouter from "./routes/feedback.route";
+import adviceRouter from "./routes/advice.route";
 
 const app = express();
 
@@ -34,6 +36,9 @@ app.use(
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/appointment", appointmentRouter);
+app.use("/api/feedback", feedbackRouter);
+app.use("/api/advice", adviceRouter);
+
 // Testing
 app.get("/healthChecker", (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({
@@ -63,6 +68,5 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 const port = config.get<number>("port");
 app.listen(port, () => {
   console.log(`Server started on port: ${port}`);
-  // 👇 call the connectDB function here
   connectDB();
 });
