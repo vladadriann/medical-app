@@ -6,6 +6,7 @@ import { excludedFields } from "../controllers/auth.controller";
 import { signJwt } from "../utils/jwt";
 import redisClient from "../utils/connect-redis";
 import { DocumentType } from "@typegoose/typegoose";
+import { stringify } from "querystring";
 
 // CreateUser service
 export const createUser = async (input: Partial<User>) => {
@@ -35,7 +36,7 @@ export const findUser = async (
 // Sign Token
 export const signToken = async (user: DocumentType<User>) => {
   // Sign the access token
-  const access_token = signJwt(
+  const accessToken = signJwt(
     { sub: user._id },
     {
       expiresIn: `${config.get<number>("accessTokenExpiresIn")}m`,
@@ -43,10 +44,10 @@ export const signToken = async (user: DocumentType<User>) => {
   );
 
   // Create a Session
-  redisClient.set(user._id, JSON.stringify(user), {
+  redisClient.set(user._id.valueOf(), JSON.stringify(user), {
     EX: 60 * 60,
   });
 
   // Return access token
-  return { access_token };
+  return { accessToken };
 };
