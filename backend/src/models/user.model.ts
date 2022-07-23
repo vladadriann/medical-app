@@ -25,8 +25,20 @@ import bcrypt from "bcryptjs";
 
 // Export the User class to be used as TypeScript type
 export class User {
-  @prop()
-  name: string;
+  @prop({ required: true })
+  firstName: string;
+
+  @prop({ required: true })
+  lastName: string;
+
+  @prop({ required: true })
+  age: number;
+
+  @prop({ required: true })
+  sex: string;
+
+  @prop({ required: true })
+  address: string;
 
   @prop({ unique: true, required: true })
   email: string;
