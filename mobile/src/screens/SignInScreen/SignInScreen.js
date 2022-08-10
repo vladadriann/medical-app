@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import Logo from '../../../assets/images/Logo_1.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
+import SocialSignInButtons from '../../components/SocialSignInButtons';
 
 const SignInScreen = () => {
   const [username, setUsername] = useState('');
@@ -23,14 +24,6 @@ const SignInScreen = () => {
 
   const onForgotPasswordPressed = () => {
     console.warn('Forgot Password');
-  };
-
-  const onSignInFacebook = () => {
-    console.warn('Sign In with Facebook');
-  };
-
-  const onSignInGoogle = () => {
-    console.warn('Sign In with Google');
   };
 
   const onSignUpPressed = () => {
@@ -66,18 +59,7 @@ const SignInScreen = () => {
           type="TERTIARY"
         />
 
-        <CustomButton
-          text="Sign In with Facebook"
-          onPress={onSignInFacebook}
-          bgColor="#E7EAF4"
-          fgColor="#4765A9"
-        />
-        <CustomButton
-          text="Sign In with Google"
-          onPress={onSignInGoogle}
-          bgColor="#FAE9EA"
-          fgColor="#DD4D44"
-        />
+        <SocialSignInButtons />
 
         <CustomButton
           text="Don`t have an account? Create one"
