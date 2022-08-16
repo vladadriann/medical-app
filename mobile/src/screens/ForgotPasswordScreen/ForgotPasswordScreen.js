@@ -6,16 +6,12 @@ import CustomButton from '../../components/CustomButton';
 const ForgotPasswordScreen = () => {
   const [username, setUsername] = useState('');
 
-  const onResendPress = () => {
-    console.warn('onResendPressed');
-  };
-
-  const onSendPress = () => {
+  const onSendPressed = () => {
     console.warn('onSendPressed');
   };
 
-  const onSignInPress = () => {
-    console.warn('onSignInPressed');
+  const backToSignInPressed = () => {
+    console.warn('backToSignInPressed');
   };
 
   return (
@@ -25,21 +21,15 @@ const ForgotPasswordScreen = () => {
 
         <CustomInput
           placeholder="Username"
-          name="username"
+          value={username}
           setValue={setUsername}
         />
 
-        <CustomButton text="Send" onPress={onSendPress} />
-
-        <CustomButton
-          text="Resend code"
-          onPress={onResendPress}
-          type="SECONDARY"
-        />
+        <CustomButton text="Send" onPress={onSendPressed} />
 
         <CustomButton
           text="Back to Sign in"
-          onPress={onSignInPress}
+          onPress={backToSignInPressed}
           type="TERTIARY"
         />
       </View>

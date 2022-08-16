@@ -37,7 +37,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#3B71F3',
   },
 
-  container_TERTIARY: {},
+  container_TERTIARY: {
+    backgroundColor: '#3B71F3',
+  },
 
   text: {
     fontWeight: 'bold',
