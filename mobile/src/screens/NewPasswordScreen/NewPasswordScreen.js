@@ -4,13 +4,14 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 
-const ForgotPasswordScreen = () => {
-  const [username, setUsername] = useState('');
+const NewPasswordScreen = () => {
+  const [code, setCode] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   const navigation = useNavigation();
 
-  const onSendPressed = () => {
-    navigation.navigate('NewPassword');
+  const onSubmitPressed = () => {
+    navigation.navigate('Home');
   };
 
   const backToSignInPressed = () => {
@@ -22,13 +23,15 @@ const ForgotPasswordScreen = () => {
       <View style={styles.root}>
         <Text style={styles.title}>Reset your password</Text>
 
+        <CustomInput placeholder="Code" value={code} setValue={setCode} />
+
         <CustomInput
-          placeholder="Username"
-          value={username}
-          setValue={setUsername}
+          placeholder="Enter your new password"
+          value={newPassword}
+          setValue={setNewPassword}
         />
 
-        <CustomButton text="Send" onPress={onSendPressed} />
+        <CustomButton text="Submit" onPress={onSubmitPressed} />
 
         <CustomButton
           text="Back to Sign in"
@@ -60,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPasswordScreen;
+export default NewPasswordScreen;
