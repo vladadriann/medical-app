@@ -14,7 +14,7 @@ const NewPasswordScreen = () => {
     navigation.navigate('Home');
   };
 
-  const backToSignInPressed = () => {
+  const onSignInPressed = () => {
     navigation.navigate('SignIn');
   };
 
@@ -35,7 +35,7 @@ const NewPasswordScreen = () => {
 
         <CustomButton
           text="Back to Sign in"
-          onPress={backToSignInPressed}
+          onPress={onSignInPressed}
           type="TERTIARY"
         />
       </View>
