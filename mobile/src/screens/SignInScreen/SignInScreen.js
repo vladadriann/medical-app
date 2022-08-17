@@ -62,8 +62,8 @@ const SignInScreen = () => {
           rules={{
             required: 'Password is required',
             minLenght: {
-              value: 3,
-              message: 'Password should be minimum 3 characters long',
+              value: 8,
+              message: 'Password should be minimum 8 characters long',
             },
           }}
         />

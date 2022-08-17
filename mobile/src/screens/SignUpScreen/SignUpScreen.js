@@ -10,7 +10,8 @@ const EMAIL_REGEX =
   /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/;
 
 const SignUpScreen = () => {
-  const {control, handleSubmit} = useForm();
+  const {control, handleSubmit, watch} = useForm();
+  const pwd = watch('password');
 
   const navigation = useNavigation();
 
@@ -55,13 +56,20 @@ const SignUpScreen = () => {
           name="email"
           control={control}
           placeholder="Email"
-          rules={{pattern: EMAIL_REGEX}}
+          rules={{pattern: EMAIL_REGEX, message: 'Email is invalid'}}
         />
         <CustomInput
           name="password"
           control={control}
           placeholder="Password"
           secureTextEntry={true}
+          rules={{
+            required: 'Password is required',
+            minLenght: {
+              value: 8,
+              message: 'Password should be at least 8 characters long',
+            },
+          }}
         />
 
         <CustomInput
@@ -69,6 +77,9 @@ const SignUpScreen = () => {
           control={control}
           placeholder="Repeat Password"
           secureTextEntry={true}
+          rules={{
+            validate: value => value === pwd || 'Password do not match',
+          }}
         />
 
         <CustomButton
