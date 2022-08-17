@@ -6,6 +6,9 @@ import SocialSignInButtons from '../../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 
+const EMAIL_REGEX =
+  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/;
+
 const SignUpScreen = () => {
   const {control, handleSubmit} = useForm();
 
@@ -48,7 +51,12 @@ const SignUpScreen = () => {
             },
           }}
         />
-        <CustomInput name="email" control={control} placeholder="Email" />
+        <CustomInput
+          name="email"
+          control={control}
+          placeholder="Email"
+          rules={{pattern: EMAIL_REGEX}}
+        />
         <CustomInput
           name="password"
           control={control}
