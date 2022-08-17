@@ -4,12 +4,10 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/native';
+import {useForm} from 'react-hook-form';
 
 const SignUpScreen = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const {control, handleSubmit} = useForm();
 
   const navigation = useNavigation();
 
@@ -35,28 +33,40 @@ const SignUpScreen = () => {
         <Text style={styles.title}>Create an account</Text>
 
         <CustomInput
+          name="username"
+          control={control}
           placeholder="Username"
-          value={username}
-          setValue={setUsername}
+          rules={{
+            required: 'Username is required',
+            minLenght: {
+              value: 3,
+              message: 'Username should be at least 3 characters long',
+            },
+            maxLenght: {
+              value: 24,
+              message: 'Username should be max 24 characters long',
+            },
+          }}
         />
-
-        <CustomInput placeholder="Email" value={email} setValue={setEmail} />
-
+        <CustomInput name="email" control={control} placeholder="Email" />
         <CustomInput
+          name="password"
+          control={control}
           placeholder="Password"
-          value={password}
-          setValue={setPassword}
           secureTextEntry={true}
         />
 
         <CustomInput
+          name="password-repeat"
+          control={control}
           placeholder="Repeat Password"
-          value={passwordRepeat}
-          setValue={setPasswordRepeat}
           secureTextEntry={true}
         />
 
-        <CustomButton text="Register" onPress={onRegisterPressed} />
+        <CustomButton
+          text="Register"
+          onPress={handleSubmit(onRegisterPressed)}
+        />
 
         <Text style={styles.text}>
           By registering, you confirm that you accept our{' '}

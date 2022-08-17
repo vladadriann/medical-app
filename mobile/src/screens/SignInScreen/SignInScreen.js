@@ -19,7 +19,11 @@ const SignInScreen = () => {
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
 
-  const {control, handleSubmit} = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
 
   const onSignInPressed = data => {
     console.log(data);
@@ -44,15 +48,25 @@ const SignInScreen = () => {
           resizeMode="contain"
         />
 
-        <CustomInput name="username" placeholder="Username" control={control} />
+        <CustomInput
+          name="username"
+          placeholder="Username"
+          control={control}
+          rules={{required: 'Username is required'}}
+        />
         <CustomInput
           name="password"
           control={control}
           placeholder="Password"
           secureTextEntry={true}
+          rules={{
+            required: 'Password is required',
+            minLenght: {
+              value: 3,
+              message: 'Password should be minimum 3 characters long',
+            },
+          }}
         />
-
-        <TextInput placeholder={'password'} />
 
         <CustomButton text="Sign In" onPress={handleSubmit(onSignInPressed)} />
 
