@@ -9,6 +9,7 @@ const DoctorsScreen = () => {
       <FlatList
         data={doctors}
         renderItem={({item}) => <DoctorItem item={item} />}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
