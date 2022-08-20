@@ -5,6 +5,7 @@ import React from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import DoctorsScreen from '../screens/DoctorsScreen';
 import AppointmentsScreen from '../screens/AppointmentsScreen';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,8 +14,6 @@ const Tabs = () => {
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarShowLabel: false,
-        headerShown: false,
-        //tabBarIconStyle: {display: 'none'},
         tabBarStyle: {
           position: 'absolute',
           bottom: 25,
@@ -26,79 +25,26 @@ const Tabs = () => {
           height: 90,
           ...styles.shadow,
         },
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          if (route.name === 'Home1') {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Doctors') {
+            iconName = focused ? 'medical' : 'medical-outline';
+          } else if (route.name === 'Appointments') {
+            iconName = focused ? 'calendar' : 'calendar-outline';
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
       })}>
-      <Tab.Screen
-        name="Home1"
-        component={HomeScreen}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <View
-              style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
-              <Image
-                source={require('../components/assets/tabBar-icons/home.jpg')}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? '#e32f45' : '#748c94',
-                }}
-              />
-              <Text
-                style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}>
-                Home
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Doctors"
-        component={DoctorsScreen}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <View
-              style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
-              <Image
-                source={require('../components/assets/tabBar-icons/home.jpg')}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? '#e32f45' : '#748c94',
-                }}
-              />
-              <Text
-                style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}>
-                Doctors
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Appointments"
-        component={AppointmentsScreen}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <View
-              style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
-              <Image
-                source={require('../components/assets/tabBar-icons/home.jpg')}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? '#e32f45' : '#748c94',
-                }}
-              />
-              <Text
-                style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}>
-                Appointments
-              </Text>
-            </View>
-          ),
-        }}
-      />
+      <Tab.Screen name="Home1" component={HomeScreen} />
+      <Tab.Screen name="Doctors" component={DoctorsScreen} />
+      <Tab.Screen name="Appointments" component={AppointmentsScreen} />
     </Tab.Navigator>
   );
 };

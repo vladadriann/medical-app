@@ -1,10 +1,10 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
 const HomeScreen = () => {
   return (
     <View>
-      <Text>Hello Home</Text>
+      <Text>Home Page</Text>
     </View>
   );
 };
