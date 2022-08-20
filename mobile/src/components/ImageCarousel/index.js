@@ -6,11 +6,17 @@ import {
   StyleSheet,
   useWindowDimensions,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 
 const ImageCarousel = ({images}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const windowWidth = useWindowDimensions().width;
+
+  const onFlatListUpdate = useCallback(({viewableItems}) => {
+    if (viewableItems.length > 0) {
+      setActiveIndex(viewableItems[0].index || 0);
+    }
+  }, []);
 
   return (
     <View style={styles.root}>
@@ -30,6 +36,7 @@ const ImageCarousel = ({images}) => {
         viewabilityConfig={{
           viewAreaCoveragePercentThreshold: 50,
         }}
+        onViewableItemsChanged={onFlatListUpdate}
       />
       <View style={styles.dots}>
         {images.map((image, index) => (
