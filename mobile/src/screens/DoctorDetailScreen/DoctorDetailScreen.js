@@ -12,6 +12,7 @@ import {useState} from 'react';
 import {useRoute} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Profile from '../../../assets/images/default_profile.jpg';
+import CustomDatePicker from '../../components/CustomDatePicker/CustomDatePicker';
 
 const DoctorDetailScreen = props => {
   const route = useRoute();
@@ -40,6 +41,14 @@ const DoctorDetailScreen = props => {
             <Text style={styles.userInfoTitle}>{item.yrsExp} + </Text>
             <Text style={styles.userInfoSubTitle}>Experienta</Text>
           </View>
+          <View style={styles.userInfoItem}>
+            <Text style={styles.userInfoTitle}>{item.specialty} </Text>
+            <Text style={styles.userInfoSubTitle}>Specializare</Text>
+          </View>
+        </View>
+
+        <View>
+          <CustomDatePicker />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -47,6 +56,10 @@ const DoctorDetailScreen = props => {
 };
 
 const styles = StyleSheet.create({
+  root: {
+    alignItems: 'center',
+    padding: 20,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
