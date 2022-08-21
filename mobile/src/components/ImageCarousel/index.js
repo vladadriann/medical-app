@@ -21,6 +21,7 @@ const ImageCarousel = ({images}) => {
   return (
     <View style={styles.root}>
       <FlatList
+        key={Math.random() - 1}
         data={images}
         renderItem={({item}) => (
           <Image

@@ -13,6 +13,7 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
+        headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
           position: 'absolute',

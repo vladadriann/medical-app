@@ -1,15 +1,21 @@
-import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Image, Pressable} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 import styles from './styles';
 import doctors from '../../data/doctors';
 import Profile from '../../../assets/images/default_profile.jpg';
+import {useNavigation} from '@react-navigation/native';
 
 const DoctorItem = props => {
   const {item} = props;
+  const navigation = useNavigation();
+
+  const goToDoctorDetail = () => {
+    navigation.navigate('DoctorDetail', {item});
+  };
 
   return (
-    <View style={styles.root}>
+    <Pressable onPress={goToDoctorDetail} style={styles.root}>
       <Image style={styles.image} source={Profile} />
       <View style={styles.rightContainer}>
         <Text style={styles.title} numberOfLines={2}>
@@ -31,7 +37,7 @@ const DoctorItem = props => {
           <Text>{doctors.ratings}</Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
