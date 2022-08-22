@@ -6038,6 +6038,11 @@
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz"
   "version" "0.0.7"
 
+"react-native-image-picker@^4.9.0":
+  "integrity" "sha512-P7G4SO7lZhopGPGXAML0QTJMCKyyDmWqH3JjIfHsMN8SxVDWJDo3WlvjmJzATHk3CCIuT4YniYlsPR99KGmnYQ=="
+  "resolved" "https://registry.npmjs.org/react-native-image-picker/-/react-native-image-picker-4.9.0.tgz"
+  "version" "4.9.0"
+
 "react-native-modal-datetime-picker@^13.1.2":
   "integrity" "sha512-PZDkuY7HayRX1KE2X2dm29CvCLzwj/vn6B6QdPbjZea/GEKvHBMOLGdhFCcA9+gD64Y41+VqfytUh2fdvUvQ1g=="
   "resolved" "https://registry.npmjs.org/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-13.1.2.tgz"
