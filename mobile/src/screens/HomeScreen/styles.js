@@ -8,10 +8,15 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 20,
+    textAlign: 'center',
   },
   description: {
     marginVertical: 10,
     lineHeight: 20,
+  },
+  contact: {
+    flexDirection: 'row',
+    marginVertical: 5,
   },
 });
 

@@ -5,8 +5,8 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {useState} from 'react';
 
 const AppointmentForm = () => {
-  //const route = useRoute();
-  //const {dateAndTime} = route.params;
+  const route = useRoute();
+  const {dateAndTime} = route.params;
 
   const [cameraPhoto, setCameraPhoto] = useState();
   const [galleryPhoto, setGalleryPhoto] = useState();
@@ -41,9 +41,10 @@ const AppointmentForm = () => {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Button title="open Gallery" onPress={openGallery}></Button>
-      <Image style={{height: 250, width: 250}} source={{uri: cameraPhoto}} />
+      <Image style={{height: 100, width: 100}} source={{uri: cameraPhoto}} />
       <Button title="Open camera" onPress={openCamera}></Button>
-      <Image style={{height: 250, width: 250}} source={{uri: galleryPhoto}} />
+      <Image style={{height: 100, width: 100}} source={{uri: galleryPhoto}} />
+      <Text>{JSON.stringify(dateAndTime)}</Text>
     </View>
   );
 };

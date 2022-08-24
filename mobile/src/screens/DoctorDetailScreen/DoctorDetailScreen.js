@@ -14,7 +14,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Profile from '../../../assets/images/default_profile.jpg';
 import CustomDatePicker from '../../components/CustomDatePicker/CustomDatePicker';
 
-const DoctorDetailScreen = props => {
+const DoctorDetailScreen = ({dateAndTime}) => {
   const route = useRoute();
   const {item} = route.params;
 

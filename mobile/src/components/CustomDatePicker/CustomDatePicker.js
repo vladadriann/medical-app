@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const CustomDatePicker = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [dateAndTime, setDateAndTime] = useState(0);
+  const [dateAndTime, setDateAndTime] = useState(new Date());
   const navigation = useNavigation();
 
   const showDatePicker = () => {
@@ -21,28 +21,23 @@ const CustomDatePicker = () => {
   const handleConfirm = date => {
     //console.warn('A date has been picked: ', date);
     setDateAndTime(date);
-    //console.warn(dateAndTime);
     hideDatePicker();
+    console.warn('A date has been picked: ', dateAndTime);
+    goToAppointmentForm();
   };
 
   const goToAppointmentForm = () => {
     navigation.navigate('Appointment', {dateAndTime});
   };
 
-  const appointmentPressed = () => {
+  const selectAppointmentPressed = () => {
     showDatePicker();
-    if (dateAndTime !== 0) {
-      goToAppointmentForm();
-    }
   };
 
   return (
     <View>
-      <CustomButton
-        //type="PRIMARY"
-        text="Programeaza-te"
-        onPress={appointmentPressed}
-      />
+      <CustomButton text="Programeaza-te" onPress={showDatePicker} />
+
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="datetime"

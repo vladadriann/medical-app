@@ -9,8 +9,8 @@ import DoctorDetailScreen from './src/screens/DoctorDetailScreen';
 const App = () => {
   return (
     <SafeAreaView style={styles.root}>
-      <AppointmentForm />
-      {/*  <Navigation />*/}
+      {/*<AppointmentForm />*/}
+      <Navigation />
     </SafeAreaView>
   );
 };
