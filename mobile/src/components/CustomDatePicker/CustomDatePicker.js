@@ -19,30 +19,28 @@ const CustomDatePicker = () => {
   };
 
   const handleConfirm = date => {
-    //console.warn('A date has been picked: ', date);
+    console.warn('A date has been picked: ', date.toLocaleString());
     setDateAndTime(date);
     hideDatePicker();
-    console.warn('A date has been picked: ', dateAndTime);
-    goToAppointmentForm();
   };
 
   const goToAppointmentForm = () => {
     navigation.navigate('Appointment', {dateAndTime});
   };
 
-  const selectAppointmentPressed = () => {
-    showDatePicker();
-  };
-
   return (
     <View>
-      <CustomButton text="Programeaza-te" onPress={showDatePicker} />
+      <CustomButton text="Alegeti data si ora" onPress={showDatePicker} />
 
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="datetime"
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
+      />
+      <CustomButton
+        onPress={() => goToAppointmentForm()}
+        text="Continuati catre formularul de programare"
       />
     </View>
   );

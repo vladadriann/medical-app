@@ -42,11 +42,11 @@ const SignUpScreen = () => {
           placeholder="Username"
           rules={{
             required: 'Username is required',
-            minLenght: {
+            minLength: {
               value: 3,
               message: 'Username should be at least 3 characters long',
             },
-            maxLenght: {
+            maxLength: {
               value: 24,
               message: 'Username should be max 24 characters long',
             },
@@ -56,16 +56,19 @@ const SignUpScreen = () => {
           name="email"
           control={control}
           placeholder="Email"
-          rules={{pattern: EMAIL_REGEX, message: 'Email is invalid'}}
+          rules={{
+            required: 'Email is required',
+            pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
+          }}
         />
         <CustomInput
           name="password"
           control={control}
           placeholder="Password"
-          secureTextEntry={true}
+          secureTextEntry
           rules={{
             required: 'Password is required',
-            minLenght: {
+            minLength: {
               value: 8,
               message: 'Password should be at least 8 characters long',
             },
@@ -76,7 +79,7 @@ const SignUpScreen = () => {
           name="password-repeat"
           control={control}
           placeholder="Repeat Password"
-          secureTextEntry={true}
+          secureTextEntry
           rules={{
             validate: value => value === pwd || 'Password do not match',
           }}

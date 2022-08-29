@@ -22,7 +22,7 @@ const NewPasswordScreen = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.root}>
-        <Text style={styles.title}>Reset your password</Text>
+        <Text style={styles.title}>New password</Text>
 
         <CustomInput
           placeholder="Code"

@@ -1,19 +1,17 @@
 import {
   View,
-  Text,
   Image,
   StyleSheet,
   useWindowDimensions,
   ScrollView,
-  TextInput,
 } from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import Logo from '../../../assets/images/Logo_1.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/native';
-import {useForm, Controller} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 
 const SignInScreen = () => {
   const {height} = useWindowDimensions();
@@ -27,7 +25,6 @@ const SignInScreen = () => {
 
   const onSignInPressed = data => {
     console.log(data);
-    // validate user
     navigation.navigate('Home');
   };
 
@@ -54,16 +51,17 @@ const SignInScreen = () => {
           control={control}
           rules={{required: 'Username is required'}}
         />
+
         <CustomInput
           name="password"
-          control={control}
           placeholder="Password"
-          secureTextEntry={true}
+          secureTextEntry
+          control={control}
           rules={{
             required: 'Password is required',
-            minLenght: {
-              value: 8,
-              message: 'Password should be minimum 8 characters long',
+            minLength: {
+              value: 3,
+              message: 'Password should be minimum 3 characters long',
             },
           }}
         />
