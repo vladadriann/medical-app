@@ -32,7 +32,7 @@ export class User {
   lastName: string;
 
   @prop({ required: true })
-  age: number;
+  age: string;
 
   @prop({ required: true })
   sex: string;

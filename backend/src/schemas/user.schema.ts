@@ -8,7 +8,7 @@ export const createUserSchema = object({
       "Invalid email"
     ),
     sex: string({ required_error: "Sex is required" }),
-    age: number({ required_error: "Age is required" }),
+    age: string({ required_error: "Age is required" }),
     address: string({ required_error: "Address is required" }),
     password: string({ required_error: "Password is required" })
       .min(8, "Password must be more than 8 characters")
