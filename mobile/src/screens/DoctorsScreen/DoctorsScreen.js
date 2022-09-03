@@ -3,6 +3,7 @@ import React from 'react';
 import DoctorItem from '../../components/DoctorItem/DoctorItem';
 import doctors from '../../data/doctors';
 import styles from './styles';
+import axios from 'axios';
 
 const DoctorsScreen = () => {
   return (

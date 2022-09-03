@@ -4,6 +4,7 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
+import styles from './styles';
 
 const NewPasswordScreen = () => {
   const {control, handleSubmit} = useForm();
@@ -56,25 +57,5 @@ const NewPasswordScreen = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#051C60',
-    margin: 10,
-  },
-  text: {
-    color: 'gray',
-    marginVertical: 10,
-  },
-  link: {
-    color: '#FDB075',
-  },
-});
 
 export default NewPasswordScreen;

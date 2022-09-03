@@ -11,6 +11,7 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {useState} from 'react';
 import CustomButton from '../../components/CustomButton';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 const AppointmentForm = () => {
   const route = useRoute();
@@ -68,6 +69,7 @@ const AppointmentForm = () => {
         text="Deschideti camera"
         onPress={openCamera}></CustomButton>
       {/*<Image style={{height: 100, width: 100}} source={{uri: galleryPhoto}} />*/}
+
       <Text>
         Doriti sa va programati pe data de: {''}
         {dateAndTime.getDate()}.{dateAndTime.getMonth()} la ora{' '}

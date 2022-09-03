@@ -10,6 +10,11 @@ import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Tabs from './Tabs';
 import DoctorDetailScreen from '../screens/DoctorDetailScreen/DoctorDetailScreen';
 import AppointmentForm from '../screens/AppointmentForm/AppointmentForm';
+import AppointmentsScreen from '../screens/AppointmentsScreen';
+
+{
+  /* */
+}
 
 const Stack = createNativeStackNavigator();
 

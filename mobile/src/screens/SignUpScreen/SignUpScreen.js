@@ -6,9 +6,10 @@ import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
+import axios from 'axios';
 
 const EMAIL_REGEX =
-  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/;
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const SignUpScreen = () => {
   const {control, handleSubmit, watch} = useForm();
@@ -16,8 +17,23 @@ const SignUpScreen = () => {
 
   const navigation = useNavigation();
 
-  const onRegisterPressed = () => {
-    navigation.navigate('ConfirmEmail');
+  const onRegisterPressed = data => {
+    axios
+      .post('http:192.168.0.185:8000/api/auth/register', {
+        fullName: data.username,
+        email: data.email,
+        password: data.password,
+        passwordConfirm: data.passwordRepeat,
+      })
+      .then(function (response) {
+        console.log('Posting data', response);
+        console.warn('Cont creat cu succes');
+        navigation.navigate('SignIn');
+      })
+      .catch(function (error) {
+        console.log(error.response.request._response);
+      });
+    //navigation.navigate('ConfirmEmail');
   };
 
   const onSignInPressed = () => {
@@ -77,7 +93,7 @@ const SignUpScreen = () => {
         />
 
         <CustomInput
-          name="password-repeat"
+          name="passwordRepeat"
           control={control}
           placeholder="Repeat Password"
           secureTextEntry

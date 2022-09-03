@@ -14,8 +14,12 @@ import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {useEffect} from 'react';
 import styles from './styles';
+import axios from 'axios';
+import {AuthState} from '../../context/AuthContext';
+import {useContext} from 'react';
 
 const SignInScreen = () => {
+  const {authToken, setAuthToken} = useContext(AuthState);
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
 
@@ -26,7 +30,20 @@ const SignInScreen = () => {
   } = useForm();
 
   const onSignInPressed = data => {
-    navigation.navigate('Home');
+    axios
+      .post('http:192.168.0.185:8000/api/auth/login', {
+        email: data.email,
+        password: data.password,
+      })
+      .then(function (response) {
+        console.log('Posting data', response);
+        setAuthToken({authToken: response.data.accessToken});
+        console.log(authToken);
+        navigation.navigate('Home');
+      })
+      .catch(function (error) {
+        console.log(error.response);
+      });
   };
 
   const onForgotPasswordPressed = () => {

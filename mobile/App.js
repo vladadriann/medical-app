@@ -7,14 +7,14 @@ import AppointmentForm from './src/screens/AppointmentForm/AppointmentForm';
 import AppointmentsScreen from './src/screens/AppointmentsScreen';
 import DoctorDetailScreen from './src/screens/DoctorDetailScreen';
 import LogInTest from './src/screens/LogIn-test';
+import AuthStateProvider from './src/context/AuthContext';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.root}>
-      {/*<AppointmentForm />*/}
-
-      {/*<LogInTest /> */}
-      <Navigation />
+      <AuthStateProvider>
+        <Navigation />
+      </AuthStateProvider>
     </SafeAreaView>
   );
 };
