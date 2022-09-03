@@ -7,6 +7,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import React, {useState, useCallback} from 'react';
+import styles from './styles';
 
 const ImageCarousel = ({images}) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -51,28 +52,5 @@ const ImageCarousel = ({images}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  root: {},
-  image: {
-    margin: 10,
-    height: 250,
-    resizeMode: 'contain',
-  },
-  dots: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dot: {
-    width: 10,
-    height: 10,
-    borderRadius: 25,
-    borderWidth: 1,
-    backgroundColor: '#ededed',
-    borderColor: '#c9c9c9',
-    margin: 5,
-  },
-});
 
 export default ImageCarousel;

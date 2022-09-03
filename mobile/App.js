@@ -6,14 +6,15 @@ import Navigation from './src/navigation';
 import AppointmentForm from './src/screens/AppointmentForm/AppointmentForm';
 import AppointmentsScreen from './src/screens/AppointmentsScreen';
 import DoctorDetailScreen from './src/screens/DoctorDetailScreen';
+import LogInTest from './src/screens/LogIn-test';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.root}>
       {/*<AppointmentForm />*/}
-      {/*
-      <Navigation />*/}
-      <AppointmentsScreen />
+
+      {/*<LogInTest /> */}
+      <Navigation />
     </SafeAreaView>
   );
 };

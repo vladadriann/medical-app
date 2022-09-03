@@ -5,13 +5,15 @@ import {
   useWindowDimensions,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Logo from '../../../assets/images/Logo_1.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
+import {useEffect} from 'react';
+import styles from './styles';
 
 const SignInScreen = () => {
   const {height} = useWindowDimensions();
@@ -24,7 +26,6 @@ const SignInScreen = () => {
   } = useForm();
 
   const onSignInPressed = data => {
-    console.log(data);
     navigation.navigate('Home');
   };
 
@@ -46,10 +47,10 @@ const SignInScreen = () => {
         />
 
         <CustomInput
-          name="username"
-          placeholder="Username"
+          name="email"
+          placeholder="Email"
           control={control}
-          rules={{required: 'Username is required'}}
+          rules={{required: 'Email is required'}}
         />
 
         <CustomInput
@@ -85,17 +86,5 @@ const SignInScreen = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    padding: 20,
-  },
-  logo: {
-    width: '70%',
-    maxWidth: 300,
-    maxHeight: 200,
-  },
-});
 
 export default SignInScreen;

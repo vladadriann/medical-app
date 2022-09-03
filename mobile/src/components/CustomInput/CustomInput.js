@@ -1,6 +1,7 @@
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import React from 'react';
 import {Controller} from 'react-hook-form';
+import styles from './styles';
 
 const CustomInput = ({
   control,
@@ -40,20 +41,5 @@ const CustomInput = ({
     />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    width: '100%',
-
-    borderColor: '#e8e8e8',
-    borderWidth: 1,
-    borderRadius: 5,
-
-    paddingHorizontal: 10,
-    marginVertical: 5,
-  },
-  input: {},
-});
 
 export default CustomInput;
