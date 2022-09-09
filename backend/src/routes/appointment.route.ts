@@ -1,5 +1,5 @@
 import express from "express";
-import { appointmentHandler, getAllAppointmentsHandler } from "../controllers/appointment.controller";
+import { appointmentHandler, getAllAppointmentsHandler, updateAppointmentHandler } from "../controllers/appointment.controller";
 import { requireUser } from "../middleware/require-user";
 import { validate } from "../middleware/validate";
 import { appointmentSchema } from "../schemas/appointment.schema";
@@ -12,5 +12,7 @@ router.use(deserializeUser, requireUser);
 router.post("/create", validate(appointmentSchema), appointmentHandler);
 
 router.get("/all", getAllAppointmentsHandler);
+
+router.post("/update", updateAppointmentHandler)
 
 export default router;

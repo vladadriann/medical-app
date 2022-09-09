@@ -89,7 +89,7 @@ export const loginHandler = async (
     res.status(200).json({
       status: "success",
       token: accessToken,
-      role : user.role,
+      role :user.role,
     });
   } catch (err: any) {
     next(err);

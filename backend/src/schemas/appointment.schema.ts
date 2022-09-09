@@ -5,6 +5,7 @@ export const appointmentSchema = object({
     appointmentDate: string({ required_error: "Appointment date is required" }),
     appointmentHour: string({ required_error: "Appointment hour is required" }),
     observations: string({ required_error: "Observations are required" }),
+    doctorId: string ({ required_error: "Doctor Id is required" })
   }),
 });
 

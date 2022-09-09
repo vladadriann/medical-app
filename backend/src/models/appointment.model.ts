@@ -21,7 +21,22 @@ export class Appointment {
   @prop({ required: true })
   userId: string;
 
- 
+  @prop({ required: true })
+  accepted: boolean;
+
+  @prop({ required: true })
+  doctorId: string;
+
+  @prop({ required: true })
+  doctorObservations: string;
+
+  @prop({ required: false })
+  doctorObservationsImage: string;
+
+  @prop({ required: false })
+  ObservationsImage: string;
+
+
 }
 
 const appointmentModel = getModelForClass(Appointment);
