@@ -20,6 +20,8 @@ export class Appointment {
 
   @prop({ required: true })
   userId: string;
+
+ 
 }
 
 const appointmentModel = getModelForClass(Appointment);

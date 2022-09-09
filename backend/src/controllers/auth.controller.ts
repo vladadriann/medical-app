@@ -1,5 +1,6 @@
 import config from "config";
 import { CookieOptions, NextFunction, Request, Response } from "express";
+import { resolve } from "node:path/posix";
 import { CreateUserInput, LoginUserInput } from "../schemas/user.schema";
 import { createUser, findUser, signToken } from "../services/user.service";
 import AppError from "../utils/app-error";
@@ -27,14 +28,17 @@ export const registerHandler = async (
   next: NextFunction
 ) => {
   try {
+
+    let role = null
+    if (req.body.role !== undefined) {
+      role = req.body.role
+    }
+
     const user = await createUser({
       email: req.body.email,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      fullName: req.body.fullName,
       password: req.body.password,
-      sex: req.body.sex,
-      age: req.body.age,
-      address: req.body.address,
+      role: ((role!==null) && (role==='user')) ?  'user' : 'doctor'
     });
 
     res.status(201).json({
@@ -84,7 +88,8 @@ export const loginHandler = async (
     // Send Access Token
     res.status(200).json({
       status: "success",
-      accessToken,
+      token: accessToken,
+      role : user.role,
     });
   } catch (err: any) {
     next(err);

@@ -33,6 +33,12 @@ export const findUser = async (
   return await userModel.findOne(query, {}, options).select("+password");
 };
 
+export const deleteUser = async (id: string) => {
+  const user = await userModel.deleteOne({_id: id})
+  return user
+}
+
+
 // Sign Token
 export const signToken = async (user: DocumentType<User>) => {
   // Sign the access token

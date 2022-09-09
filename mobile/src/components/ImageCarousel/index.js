@@ -25,6 +25,7 @@ const ImageCarousel = ({images}) => {
         data={images}
         renderItem={({item}) => (
           <Image
+            key={Math.random() * 100}
             style={[styles.image, {width: windowWidth - 40}]}
             source={{uri: item}}
           />
@@ -42,6 +43,7 @@ const ImageCarousel = ({images}) => {
       <View style={styles.dots}>
         {images.map((image, index) => (
           <View
+            key={Math.random() * 100}
             style={[
               styles.dot,
               {backgroundColor: index === activeIndex ? '#c9c9c9' : '#ededed'},

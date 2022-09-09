@@ -10,6 +10,5 @@ export const restrictTo =
         new AppError("You are not allowed to perform this action", 403)
       );
     }
-
     next();
   };

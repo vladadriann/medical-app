@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const CustomDatePicker = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [dateAndTime, setDateAndTime] = useState(new Date());
+  const [dateAndTime, setDateAndTime] = useState();
   const navigation = useNavigation();
 
   const showDatePicker = () => {
@@ -19,8 +19,8 @@ const CustomDatePicker = () => {
   };
 
   const handleConfirm = date => {
-    console.warn('A date has been picked: ', date.toLocaleString());
-    setDateAndTime(date);
+    console.warn('A date has been picked: ', date);
+    setDateAndTime(date.toLocaleString());
     hideDatePicker();
   };
 

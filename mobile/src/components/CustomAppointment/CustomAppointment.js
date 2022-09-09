@@ -1,18 +1,23 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 
-const CustomAppointment = () => {
+const CustomAppointment = ({cameraPhoto, value, dateAndTime}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title} numberOfLines={3}>
-        Programare 13.07 ora 12:45
+        {` ${dateAndTime.getDate()}.${dateAndTime.getMonth()} ora ${dateAndTime.getHours()}:${dateAndTime.getMinutes()}`}
       </Text>
       <Text style={styles.text}>
-        Aveti programare in data de 13.07 ora 12:45, doctor CBX, ginecologie.
+        {`Aveti programare in data de  ${dateAndTime.getDate()}.${dateAndTime.getMonth()} la ora ${dateAndTime.getHours()}:${dateAndTime.getMinutes()}.`}
       </Text>
+      <Text style={styles.subTitle}>Descirerea simptomelor:</Text>
+      <Text style={styles.text}>{`${value}`}</Text>
       <Text style={styles.subTitle}>Documentul incarcat de dvs:</Text>
-      <View></View>
+      <View>
+        <Image style={{height: 100, width: 100}} source={{uri: cameraPhoto}} />
+      </View>
       <Text style={styles.subTitle}>Recomandarile medicului:</Text>
       <Text style={styles.subTitle}>Documentul incarcat de medic:</Text>
     </View>

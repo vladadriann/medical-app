@@ -9,7 +9,7 @@ import {useForm} from 'react-hook-form';
 import axios from 'axios';
 
 const EMAIL_REGEX =
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  /^[a-zA-Z0-9.!#$%&*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const SignUpScreen = () => {
   const {control, handleSubmit, watch} = useForm();
@@ -19,7 +19,7 @@ const SignUpScreen = () => {
 
   const onRegisterPressed = data => {
     axios
-      .post('http:192.168.0.185:8000/api/auth/register', {
+      .post('http:192.168.0.102:8000/api/auth/register', {
         fullName: data.username,
         email: data.email,
         password: data.password,
@@ -33,7 +33,6 @@ const SignUpScreen = () => {
       .catch(function (error) {
         console.log(error.response.request._response);
       });
-    //navigation.navigate('ConfirmEmail');
   };
 
   const onSignInPressed = () => {
@@ -56,7 +55,7 @@ const SignUpScreen = () => {
         <CustomInput
           name="username"
           control={control}
-          placeholder="Username"
+          placeholder="Full Name"
           rules={{
             required: 'Username is required',
             minLength: {

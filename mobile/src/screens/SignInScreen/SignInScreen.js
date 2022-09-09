@@ -31,15 +31,20 @@ const SignInScreen = () => {
 
   const onSignInPressed = data => {
     axios
-      .post('http:192.168.0.185:8000/api/auth/login', {
+      .post('http:192.168.0.102:8000/api/auth/login', {
         email: data.email,
         password: data.password,
       })
       .then(function (response) {
-        console.log('Posting data', response);
-        setAuthToken({authToken: response.data.accessToken});
+        console.log('Posting data', response.data.role);
+        setAuthToken({authToken: response.data.token});
         console.log(authToken);
-        navigation.navigate('Home');
+
+        if (response.data.role === 'user') {
+          navigation.navigate('Home');
+        } else if (response.data.role === 'doctor') {
+          navigation.navigate('Admin');
+        }
       })
       .catch(function (error) {
         console.log(error.response);

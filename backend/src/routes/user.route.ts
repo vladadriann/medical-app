@@ -2,6 +2,8 @@ import express from "express";
 import {
   getAllUsersHandler,
   getMeHandler,
+  getAllDoctorsHandler,
+  deleteUserHandler
 } from "../controllers/user.controller";
 import { deserializeUser } from "../middleware/deserialize-user";
 import { requireUser } from "../middleware/require-user";
@@ -15,5 +17,13 @@ router.get("/", restrictTo("admin"), getAllUsersHandler);
 
 // Get my info route
 router.get("/me", getMeHandler);
+
+//Get all doctors
+
+router.get("/doctors", getAllDoctorsHandler);
+
+//Delete user
+
+router.post("/delete",restrictTo("admin"), deleteUserHandler);
 
 export default router;

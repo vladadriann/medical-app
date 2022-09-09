@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  PermissionsAndroid,
-  TextInput,
-} from 'react-native';
+import {View, Text, PermissionsAndroid, TextInput} from 'react-native';
 import React from 'react';
 import {useRoute} from '@react-navigation/native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
@@ -12,14 +6,21 @@ import {useState} from 'react';
 import CustomButton from '../../components/CustomButton';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {AuthState} from '../../context/AuthContext';
+import {useContext, useEffect} from 'react';
+import axios from 'axios';
 
 const AppointmentForm = () => {
+  const {authToken} = useContext(AuthState);
   const route = useRoute();
   const {dateAndTime} = route.params;
 
+  const navigation = useNavigation();
+
   const [cameraPhoto, setCameraPhoto] = useState();
   const [galleryPhoto, setGalleryPhoto] = useState();
-  const [value, setValue] = useState('');
+  const [details, setDetails] = useState('');
+  const [appointmentDate, setAppointmentDate] = useState(new Date(dateAndTime));
 
   const options = {
     title: 'Select Image',
@@ -48,15 +49,70 @@ const AppointmentForm = () => {
     }
   };
 
+  {
+    /* axios
+      .post(
+        'http:192.168.0.102:8000/api/appointment/create',
+        {
+          appointmentData: dateAndTime.getDate(),
+          appointmentHour: dateAndTime.getHours(),
+          observations: value,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken.authToken}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(function (response) {
+        console.log('Posting data', response.data);
+      })
+      .catch(function (error) {
+        console.log(error.response);
+      });
+  }, [authToken]);*/
+  }
+
+  const goToAppointments = () => {
+    console.warn(details);
+    axios
+      .post(
+        'http:192.168.0.102:8000/api/appointment/create',
+        JSON.stringify({
+          appointmentData: `${appointmentDate.getDate()}`,
+          appointmentHour: `${appointmentDate.getHours()}`,
+          observations: details,
+        }),
+        {
+          headers: {
+            Authorization: `Bearer ${authToken.authToken}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(function (response) {
+        navigation.navigate(`Appointments`, {
+          cameraPhoto,
+          dateAndTime,
+          details,
+        });
+        console.log('Posting data', response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <View style={styles.root}>
       <Text style={styles.title}>Finalizati programarea</Text>
       <Text>Scurta descriere a simptomelor:</Text>
       <View style={styles.container}>
         <TextInput
-          value={value}
-          onChange={setValue}
-          placeholder=""
+          value={details}
+          onChange={text => setDetails(text)}
+          placeholder="..."
           style={styles.input}
         />
       </View>
@@ -71,10 +127,13 @@ const AppointmentForm = () => {
       {/*<Image style={{height: 100, width: 100}} source={{uri: galleryPhoto}} />*/}
 
       <Text>
-        Doriti sa va programati pe data de: {''}
-        {dateAndTime.getDate()}.{dateAndTime.getMonth()} la ora{' '}
-        {dateAndTime.getHours()}:{dateAndTime.getMinutes()}
+        Doriti sa va programati pe data de:
+        {appointmentDate.getDate()}.{appointmentDate.getMonth()} la ora{' '}
+        {appointmentDate.getHours()}:{appointmentDate.getMinutes()}
       </Text>
+      <CustomButton
+        text="Apasati pentru finalizare!"
+        onPress={goToAppointments}></CustomButton>
     </View>
   );
 };
