@@ -17,7 +17,7 @@ const DoctorsScreen = () => {
     const data = JSON.stringify({});
     const config = {
       method: 'get',
-      url: 'http:192.168.0.102:8000/api/users/doctors',
+      url: 'http:192.168.0.185:8000/api/users/doctors',
       headers: {
         Authorization: `Bearer ${authToken.authToken}`,
         'Content-Type': 'application/json',
@@ -27,6 +27,7 @@ const DoctorsScreen = () => {
     console.log(config);
     axios(config)
       .then(response => {
+        console.log;
         setDoctors(response.data.data.doctors);
       })
       .catch(error => {

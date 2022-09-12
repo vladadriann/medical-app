@@ -9,6 +9,7 @@ export const createAppointment = async (input: Partial<Appointment>) => {
   return omit(appointment.toJSON(), excludedFields);
 };
 
+// Update Appointment service
 export const updateAppointment = async (id: string, query: any) => {
   const appointment= await appointmentModel.findOneAndUpdate({ _id: id}, query, {returnDocument: "after"})
   return appointment

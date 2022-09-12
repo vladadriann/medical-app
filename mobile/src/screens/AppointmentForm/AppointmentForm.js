@@ -1,4 +1,4 @@
-import {View, Text, PermissionsAndroid, TextInput} from 'react-native';
+import {View, Text, PermissionsAndroid, TextInput, Image} from 'react-native';
 import React from 'react';
 import {useRoute} from '@react-navigation/native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
@@ -76,28 +76,25 @@ const AppointmentForm = () => {
 
   const goToAppointments = () => {
     console.warn(details);
-    axios
-      .post(
-        'http:192.168.0.102:8000/api/appointment/create',
-        JSON.stringify({
-          appointmentData: `${appointmentDate.getDate()}`,
-          appointmentHour: `${appointmentDate.getHours()}`,
-          observations: details,
-        }),
-        {
-          headers: {
-            Authorization: `Bearer ${authToken.authToken}`,
-            'Content-Type': 'application/json',
-          },
-        },
-      )
+    const data = JSON.stringify({
+      appointmentDate: `${dateAndTime.getDate()}`,
+      appointmentHour: `${dateAndTime.getHours()}`,
+      observations: `${details}`,
+    });
+
+    var config = {
+      method: 'post',
+      url: 'http:192.168.0.185:8000/api/appointment/create',
+      headers: {
+        Authorization: `Bearer ${authToken.authToken}`,
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+
+    axios(config)
       .then(function (response) {
-        navigation.navigate(`Appointments`, {
-          cameraPhoto,
-          dateAndTime,
-          details,
-        });
-        console.log('Posting data', response);
+        console.log(JSON.stringify(response.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -120,11 +117,11 @@ const AppointmentForm = () => {
       <CustomButton
         text="Deschideti galeria"
         onPress={openGallery}></CustomButton>
-      {/* <Image style={{height: 100, width: 100}} source={{uri: cameraPhoto}} />*/}
+      <Image style={{height: 100, width: 100}} source={{uri: cameraPhoto}} />
       <CustomButton
         text="Deschideti camera"
         onPress={openCamera}></CustomButton>
-      {/*<Image style={{height: 100, width: 100}} source={{uri: galleryPhoto}} />*/}
+      <Image style={{height: 100, width: 100}} source={{uri: galleryPhoto}} />
 
       <Text>
         Doriti sa va programati pe data de:

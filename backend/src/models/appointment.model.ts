@@ -27,7 +27,7 @@ export class Appointment {
   @prop({ required: true })
   doctorId: string;
 
-  @prop({ required: true })
+  @prop({ required: false })
   doctorObservations: string;
 
   @prop({ required: false })

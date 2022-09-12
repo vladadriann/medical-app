@@ -1,18 +1,10 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, Image, Test} from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {useRoute} from '@react-navigation/native';
-import CustomButton from '../CustomButton';
+import {StyleSheet} from 'react-native';
 
-const CustomAppointment = props => {
+const AppointmentItem = props => {
   const {item} = props;
-  const navigation = useNavigation();
-
   console.log(item);
-
-  const appointmentConfirm = () => {
-    navigation.navigate('Confirm', {item});
-  };
 
   return (
     <View style={styles.container}>
@@ -42,10 +34,6 @@ const CustomAppointment = props => {
       <Text style={styles.subTitle}>
         Status programare: {`${item.accepted}`}{' '}
       </Text>
-      <CustomButton
-        text="Confirmati programarea"
-        onPress={appointmentConfirm}
-      />
     </View>
   );
 };
@@ -65,4 +53,4 @@ const styles = StyleSheet.create({
   text: {fontSize: 14},
 });
 
-export default CustomAppointment;
+export default AppointmentItem;

@@ -19,7 +19,7 @@ const SignUpScreen = () => {
 
   const onRegisterPressed = data => {
     axios
-      .post('http:192.168.0.102:8000/api/auth/register', {
+      .post('http:192.168.0.185:8000/api/auth/register', {
         fullName: data.username,
         email: data.email,
         password: data.password,

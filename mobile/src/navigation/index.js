@@ -10,7 +10,9 @@ import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Tabs from './Tabs';
 import DoctorDetailScreen from '../screens/DoctorDetailScreen/DoctorDetailScreen';
 import AppointmentForm from '../screens/AppointmentForm/AppointmentForm';
-import AdminPage from '../screens/AdminPage';
+import DoctorPage from '../screens/DoctorPage/DoctorPage';
+import AdminPage from '../screens/AdminPage/AdminPage';
+import AppointmentConfirm from '../screens/AppointmentConfirm/AppointmentConfirm';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,8 @@ const Navigation = () => {
         <Stack.Screen name="DoctorDetail" component={DoctorDetailScreen} />
         <Stack.Screen name="Appointment" component={AppointmentForm} />
         <Stack.Screen name="Admin" component={AdminPage} />
+        <Stack.Screen name="Doctor" component={DoctorPage} />
+        <Stack.Screen name="Confirm" component={AppointmentConfirm} />
       </Stack.Navigator>
     </NavigationContainer>
   );

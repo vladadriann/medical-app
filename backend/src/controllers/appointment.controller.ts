@@ -64,6 +64,34 @@ export const getAllAppointmentsHandler = async (
   }
 };
 
+export const getAllAppointmentsDoctorHandler = async (
+  req: Request<{}, {}, CreateAppointmentInput>,
+  res: Response,
+  next: NextFunction
+) => {
+  const user = res.locals.user;
+  
+  console.log(user);
+  try {
+    const appointments = await findAllUserAppointments()
+    const doctorAppointments = appointments.filter(appointment => appointment.doctorId === user._id.valueOf())
+    res.status(201).json({
+      status: "success",
+      data: {
+       doctorAppointments,
+      },
+    });
+  } catch (err: any) {
+    if (err.code === 11000) {
+      return res.status(409).json({
+        status: "fail",
+        message: "Appointments do not exist",
+      });
+    }
+    next(err);
+  }
+};
+
 export const updateAppointmentHandler = async (
   req: Request,
   res: Response,
@@ -71,15 +99,20 @@ export const updateAppointmentHandler = async (
 ) => {
   const user = res.locals.user;
   console.log(user);
+  console.log(req.body)
   try {
     const query = {
       doctorObservations: req.body.doctorObservations,
       doctorObservationsImage: req.body.doctorObservationsImage,
       accepted: req.body.accepted
     }
+    
+    console.log(query)
 
     const appointment = await updateAppointment(req.body.id, query)
 
+    console.log(appointment)
+   
     res.status(201).json({
       status: "success",
       data: {

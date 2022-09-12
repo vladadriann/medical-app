@@ -29,16 +29,13 @@ export const registerHandler = async (
 ) => {
   try {
 
-    let role = null
-    if (req.body.role !== undefined) {
-      role = req.body.role
-    }
+    
 
     const user = await createUser({
       email: req.body.email,
       fullName: req.body.fullName,
       password: req.body.password,
-      role: ((role!==null) && (role==='user')) ?  'user' : 'doctor'
+      role: 'user'
     });
 
     res.status(201).json({
@@ -90,6 +87,7 @@ export const loginHandler = async (
       status: "success",
       token: accessToken,
       role :user.role,
+      id: user._id
     });
   } catch (err: any) {
     next(err);

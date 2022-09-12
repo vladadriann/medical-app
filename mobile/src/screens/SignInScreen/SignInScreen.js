@@ -22,6 +22,7 @@ const SignInScreen = () => {
   const {authToken, setAuthToken} = useContext(AuthState);
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
+  const [doctorId, setDoctorId] = useState();
 
   const {
     control,
@@ -31,18 +32,23 @@ const SignInScreen = () => {
 
   const onSignInPressed = data => {
     axios
-      .post('http:192.168.0.102:8000/api/auth/login', {
+      .post('http:192.168.0.185:8000/api/auth/login', {
         email: data.email,
         password: data.password,
       })
       .then(function (response) {
-        console.log('Posting data', response.data.role);
+        console.log('Posting data', response.data.id);
         setAuthToken({authToken: response.data.token});
+        setDoctorId(response.data.id);
         console.log(authToken);
 
         if (response.data.role === 'user') {
           navigation.navigate('Home');
-        } else if (response.data.role === 'doctor') {
+        }
+        if (response.data.role === 'doctor') {
+          navigation.navigate('Doctor', {doctorId});
+        }
+        if (response.data.role === 'admin') {
           navigation.navigate('Admin');
         }
       })
